@@ -12,9 +12,9 @@ export class FixedMenuComponent implements OnInit {
   mobileQuery: MediaQueryList;
   
   menuList = [
-    new MenuItem('Today-List', 'today-list', 'code'),
-    new MenuItem('Primogem Calculator', 'primogem-calculator', 'home'),
-    new MenuItem('Team Maker', 'team-maker', 'info'),
+    new MenuItem('Today-List', 'today-list', 'clock-sidenav'),
+    new MenuItem('Primogem Calculator', 'primogem-calculator', 'primogem-sidenav'),
+    new MenuItem('Team Maker', 'team-maker', 'team-sidenav'),
   ]
 
   private _mobileQueryListener: () => void;
@@ -26,6 +26,9 @@ export class FixedMenuComponent implements OnInit {
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
 
     svgCreator.createSvgIcon('sidenav-toggle', '../assets/svg/icon-toggle-sidenav.svg');
+    svgCreator.createSvgIcon('clock-sidenav', '../assets/svg/icon-clock-sidenav.svg');
+    svgCreator.createSvgIcon('primogem-sidenav', '../assets/svg/icon-primogem-sidenav.svg');
+    svgCreator.createSvgIcon('team-sidenav', '../assets/svg/icon-team-sidenav.svg');
   }
 
   ngOnInit(): void {

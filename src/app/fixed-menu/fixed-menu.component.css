@@ -22,6 +22,14 @@
     flex: 1 0 auto;
 }
 
-.sidenav-toggle{
+.sidenav-toggle-icon{
     transform: scale(1.2);
+}
+
+.mat-list-item-text{
+    font-size: 22px;
+}
+
+.mat-list-item-icon{
+    transform: scale(2);
 }
