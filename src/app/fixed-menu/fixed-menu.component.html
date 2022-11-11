@@ -1,6 +1,6 @@
 <div class="menu-container" [class.is-mobile]="mobileQuery.matches">
   <!-- toolbar start -->
-    <mat-toolbar color="primary" class="fixed-toolbar">
+    <mat-toolbar color="primary" class="fixed-toolbar" style="background: rgba(67,74,85,255);">
       <button mat-icon-button (click)="snav.toggle()" class="sidenav-toggle-icon">
         <mat-icon svgIcon="sidenav-toggle"></mat-icon>
       </button>
@@ -11,11 +11,11 @@
     <mat-sidenav-container class="sidenav-container"
                            [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
       <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'"
-                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
+                   [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" style="background-color: rgb(255 220 164);">
         <mat-nav-list style="line-height: normal;">
-          <a mat-list-item style="height: 80px;" *ngFor="let menuItem of menuList" [routerLink]="['/', menuItem.route]">
-            <mat-icon [svgIcon]="menuItem.icon" class="mat-list-item-icon"></mat-icon>
-            <span class="ps-4 mat-list-item-text">{{ menuItem.name }}</span>
+          <a mat-list-item style="height: 70px;" *ngFor="let menuItem of menuList" [routerLink]="['/', menuItem.route]">
+            <mat-icon [svgIcon]="menuItem.icon" class="sidenav-toggle-icon"></mat-icon>
+            <span class="ps-3 mat-list-item-text">{{ menuItem.name }}</span>
           </a>
         </mat-nav-list>
       </mat-sidenav>
