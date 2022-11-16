@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Console } from 'console';
+import { TeamMakerService } from '../services/team-maker.service';
 import { CharacterCard } from './character-card';
 
 @Component({
@@ -19,11 +19,11 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png'),
   ];
 
-  selectedCharacters: CharacterCard[] = [];
+  selectedCharacters: string[] = [];
 
   status: boolean = false;
 
-  constructor() { }
+  constructor(private service : TeamMakerService) { }
 
   ngOnInit(): void {
   }
@@ -31,13 +31,19 @@ export class TeamMakerComponent implements OnInit {
   addToSelectedList(card : CharacterCard){
     card.selected = !card.selected;
     if (card.selected){
-      this.selectedCharacters.push(card);
+      this.selectedCharacters.push(card.name);
     }
     else{
-      this.selectedCharacters.forEach((selectedCharacter, index) =>{
-        if (selectedCharacter.name == card.name) this.selectedCharacters.splice(index,1);
+      this.selectedCharacters.forEach((selectedCharacterName, index) =>{
+        if (selectedCharacterName == card.name) this.selectedCharacters.splice(index,1);
       })
     }
     console.log(this.selectedCharacters);
+  }
+
+  getTeams(){
+    this.service.getTeams(this.selectedCharacters).subscribe(res => {
+      console.log(res);
+    })
   }
 }
