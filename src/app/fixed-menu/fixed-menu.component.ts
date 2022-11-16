@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { SvgCreatorService } from '../services/svg-creator.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItem } from './fixed-menu-list';
+import { LoaderService } from '../services/loader/loader.service';
 
 @Component({
   selector: 'app-fixed-menu',
@@ -21,7 +22,9 @@ export class FixedMenuComponent implements OnInit {
 
   constructor(changeDetectorRef: ChangeDetectorRef, 
     media: MediaMatcher,
-    svgCreator: SvgCreatorService) {
+    svgCreator: SvgCreatorService,
+    public loaderService: LoaderService) {
+
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
     this._mobileQueryListener = () => changeDetectorRef.detectChanges();
 
