@@ -2,3 +2,7 @@
     background-color: #252525;
     color: #fff;
 }
+
+.max-content {
+    height: max-content;
+}

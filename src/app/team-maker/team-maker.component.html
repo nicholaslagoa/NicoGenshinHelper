@@ -1,11 +1,12 @@
-<div class="p-3">
-    <div class="row">
-        <div class="col-10">
-            <div class="card">
-                <div class="card-body">
-                        <div class="row">
+<div class="container-fluid">
+    <div class="p-3">
+        <div class="row">
+            <div class="col-10">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row ">
                             <div class="col-6" *ngFor="let card of cardList" style="width:9rem">
-                                <div class="card mb-4" (click)="addToSelectedList(card)" [ngClass]="card.selected ? 'card-selected' : ''">
+                                <div class="card mb-2" (click)="addToSelectedList(card)" [ngClass]="card.selected ? 'card-selected' : ''">
                                     <img [src]="card.photo" class="card-img-top" alt="...">
                                     <!-- <div class="card-body">
                                         <h5 class="card-title" [ngClass]="card.selected ? 'card-selected' : ''">{{ card.name }}</h5>
@@ -14,20 +15,21 @@
                             </div>
                         </div>
                     </div>
+                </div>
             </div>
-        </div>
-        <div class="col-2 border border-5 rounded-start text-center">
-            <h2>Filters:</h2>
-            <div class="row">
-                <div class="col"><button class="btn" (click)="filter('anemo')"><img src='../../assets/png/anemo.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('electro')"><img src='../../assets/png/electro.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('pyro')"><img src='../../assets/png/pyro.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('hydro')"><img src='../../assets/png/hydro.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('geo')"><img src='../../assets/png/geo.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('cryo')"><img src='../../assets/png/cryo.png'></button></div>
-                <div class="col"><button class="btn" (click)="filter('dendro')" style="height: 6rem;"><img src='../../assets/png/dendro.png' style="scale: 1.2;"></button></div>
-                <div class="col"><button class="btn" (click)="filter('clear')"><img src='../../assets/png/clear.png'></button></div>
-            </div> 
+            <div class="col-2 border border-5 rounded-start text-center max-content">
+                <h2>Filters:</h2>
+                <div class="row">
+                    <div class="col"><button class="btn" (click)="filter('anemo')"><img src='../../assets/png/anemo.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('electro')"><img src='../../assets/png/electro.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('pyro')"><img src='../../assets/png/pyro.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('hydro')"><img src='../../assets/png/hydro.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('geo')"><img src='../../assets/png/geo.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('cryo')"><img src='../../assets/png/cryo.png'></button></div>
+                    <div class="col"><button class="btn" (click)="filter('dendro')" style="height: 6rem;"><img src='../../assets/png/dendro.png' style="scale: 1.2;"></button></div>
+                    <div class="col"><button class="btn" (click)="filter('clear')"><img src='../../assets/png/clear.png'></button></div>
+                </div> 
+            </div>
         </div>
     </div>
 </div>
