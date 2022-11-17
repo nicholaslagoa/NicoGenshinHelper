@@ -21,6 +21,22 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
     new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
     new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
+    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
+    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
+    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
+    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
+    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
+    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
+    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
+    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
+    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
+    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
+    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
+    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
+    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
+    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
+    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
+    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
     new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro')
   ];
 
