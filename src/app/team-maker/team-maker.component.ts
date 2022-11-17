@@ -10,18 +10,18 @@ import { CharacterCard } from './character-card';
 export class TeamMakerComponent implements OnInit {
 
   cardList = [
-    new CharacterCard('Traveler', '../../assets/png/traveler.png', true),//png size = 208x248
-    new CharacterCard('Amber', '../../assets/png/amber.png', true),
-    new CharacterCard('Kaeya', '../../assets/png/kaeya.png', true),
-    new CharacterCard('Lisa', '../../assets/png/lisa.png', true),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png'),
-    new CharacterCard('Childe', '../../assets/png/childe.png'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png')
+    new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true),//png size = 208x248
+    new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', true),
+    new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', true),
+    new CharacterCard('Lisa', '../../assets/png/lisa.png', 'electro', true),
+    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
+    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
+    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
+    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
+    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
+    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
+    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
+    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro')
   ];
 
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
