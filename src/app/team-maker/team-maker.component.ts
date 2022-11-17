@@ -9,7 +9,7 @@ import { CharacterCard } from './character-card';
 })
 export class TeamMakerComponent implements OnInit {
 
-  cardList = [
+  cardListBase = [
     new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true),//png size = 208x248
     new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', true),
     new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', true),
@@ -24,6 +24,7 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro')
   ];
 
+  cardList : CharacterCard[] = [];
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
 
   status: boolean = false;
@@ -31,6 +32,7 @@ export class TeamMakerComponent implements OnInit {
   constructor(private service : TeamMakerService) { }
 
   ngOnInit(): void {
+    this.cardList = this.cardListBase;
   }
 
   addToSelectedList(card : CharacterCard){
@@ -59,5 +61,15 @@ export class TeamMakerComponent implements OnInit {
     this.service.getTeams(this.selectedCharacters).subscribe(res => {
       console.log(res);
     })
+  }
+
+  filter(selectedElement : string){
+    if (selectedElement != 'clear'){
+      this.cardList = this.cardListBase;
+      this.cardList = this.cardList.filter(x => x.element == selectedElement);
+    }
+    else{
+      this.cardList = this.cardListBase;
+    }
   }
 }
