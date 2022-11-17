@@ -23,11 +23,11 @@
 }
 
 .sidenav-toggle-icon{
-    transform: scale(1.2);
+    transform: scale(1.1);
 }
 
 .mat-list-item-text{
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .loader-container{
