@@ -16,17 +16,17 @@
                     </div>
             </div>
         </div>
-        <div class="col-2 border border-5">
+        <div class="col-2 border border-5 rounded-start text-center">
             <h2>Filters:</h2>
-            <div class="d-flex flex-row flex-wrap">
-                <button class="btn" (click)="filter('anemo')"><img src='../../assets/png/anemo.png'></button><!--width is 64-->
-                <button class="btn" (click)="filter('electro')"><img src='../../assets/png/electro.png'></button>
-                <button class="btn" (click)="filter('pyro')"><img src='../../assets/png/pyro.png'></button>
-                <button class="btn" (click)="filter('hydro')"><img src='../../assets/png/hydro.png'></button>
-                <button class="btn" (click)="filter('geo')"><img src='../../assets/png/geo.png'></button>
-                <button class="btn" (click)="filter('cryo')"><img src='../../assets/png/cryo.png'></button>
-                <button class="btn" (click)="filter('dendro')" style="height: 6rem;"><img src='../../assets/png/dendro.png' style="scale: 1.2;"></button>
-                <button class="btn" (click)="filter('clear')"><img src='../../assets/png/clear.png'></button>
+            <div class="row">
+                <div class="col"><button class="btn" (click)="filter('anemo')"><img src='../../assets/png/anemo.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('electro')"><img src='../../assets/png/electro.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('pyro')"><img src='../../assets/png/pyro.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('hydro')"><img src='../../assets/png/hydro.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('geo')"><img src='../../assets/png/geo.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('cryo')"><img src='../../assets/png/cryo.png'></button></div>
+                <div class="col"><button class="btn" (click)="filter('dendro')" style="height: 6rem;"><img src='../../assets/png/dendro.png' style="scale: 1.2;"></button></div>
+                <div class="col"><button class="btn" (click)="filter('clear')"><img src='../../assets/png/clear.png'></button></div>
             </div> 
         </div>
     </div>
