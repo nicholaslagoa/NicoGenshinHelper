@@ -1,3 +1,4 @@
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { TeamMakerService } from '../services/team-maker.service';
 import { CharacterCard } from './character-card';
@@ -9,6 +10,9 @@ import { CharacterFilter } from './character-filter';
   styleUrls: ['./team-maker.component.css']
 })
 export class TeamMakerComponent implements OnInit {
+
+  mobileQuery: MediaQueryList;
+  isMobile : boolean = false;
 
   //#region CHARACTER-LIST
   cardListBase = [
@@ -75,6 +79,7 @@ export class TeamMakerComponent implements OnInit {
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
   //#endregion
 
+  //#region FILTER
   filters = [
     new CharacterFilter('four', '../../assets/png/anemo.png'),
     new CharacterFilter('five', '../../assets/png/anemo.png'),
@@ -89,8 +94,12 @@ export class TeamMakerComponent implements OnInit {
   ];
   filterList : CharacterFilter[] = [];
   selectedFilters: string[] = [];
+  //#endregion
 
-  constructor(private service : TeamMakerService) { }
+  constructor(private service : TeamMakerService,
+    media : MediaMatcher) {
+    this.mobileQuery = media.matchMedia('(max-width: 600px)');
+  }
 
   ngOnInit(): void {
     this.cardList = this.cardListBase;

@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SvgCreatorService } from '../services/svg-creator.service';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MenuItem } from './fixed-menu-list';
@@ -18,15 +18,11 @@ export class FixedMenuComponent implements OnInit {
     new MenuItem('Team Maker', 'team-maker', 'team-sidenav'),
   ]
 
-  private _mobileQueryListener: () => void;
-
-  constructor(changeDetectorRef: ChangeDetectorRef, 
-    media: MediaMatcher,
+  constructor(media: MediaMatcher,
     svgCreator: SvgCreatorService,
     public loaderService: LoaderService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
-    this._mobileQueryListener = () => changeDetectorRef.detectChanges();
 
     svgCreator.createSvgIcon('sidenav-toggle', '../assets/svg/icon-toggle-sidenav.svg');
     svgCreator.createSvgIcon('clock-sidenav', '../assets/svg/icon-clock-sidenav.svg');
