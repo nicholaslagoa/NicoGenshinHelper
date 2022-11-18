@@ -10,67 +10,22 @@ import { CharacterCard } from './character-card';
 export class TeamMakerComponent implements OnInit {
 
   cardListBase = [
-    new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true),//png size = 208x248
-    new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', true),
-    new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', true),
-    new CharacterCard('Lisa', '../../assets/png/lisa.png', 'electro', true),
+    new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true, true),//png size = 208x248
+    new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', false, true),
+    new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', false, true),
+    new CharacterCard('Lisa', '../../assets/png/lisa.png', 'electro', false, true),
     new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
     new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
     new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
     new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
+    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro', true),
     new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', true),
-    new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', true),
-    new CharacterCard('Lisa', '../../assets/png/lisa.png', 'electro', true),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Noelle', '../../assets/png/noelle.png', 'geo'),
-    new CharacterCard('Bennett', '../../assets/png/bennett.png', 'pyro'),
-    new CharacterCard('Xiangling', '../../assets/png/xiangling.png', 'pyro'),
-    new CharacterCard('Beidou', '../../assets/png/beidou.png', 'electro'),
-    new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro'),
-    new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
-    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo'),
+    new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo', true),
     new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro')
   ];
-
   cardList : CharacterCard[] = [];
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
 
-  status: boolean = false;
 
   constructor(private service : TeamMakerService) { }
 
@@ -106,12 +61,20 @@ export class TeamMakerComponent implements OnInit {
     })
   }
 
-  filter(selectedElement : string){
-    if (selectedElement != 'clear'){
+  filter(filter : string){
+    if (filter != 'clear' && filter != 'four' && filter != 'five'){ //element filter
       this.cardList = this.cardListBase;
-      this.cardList = this.cardList.filter(x => x.element == selectedElement);
+      this.cardList = this.cardList.filter(x => x.element == filter);
     }
-    else{
+    else if (filter == 'four'){
+      this.cardList = this.cardListBase;
+      this.cardList = this.cardList.filter(x => !x.isFiveStar);
+    }
+    else if (filter == 'five'){
+      this.cardList = this.cardListBase;
+      this.cardList = this.cardList.filter(x => x.isFiveStar);
+    }
+    else{//clear filter
       this.cardList = this.cardListBase;
     }
   }
