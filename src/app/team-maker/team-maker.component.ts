@@ -46,7 +46,7 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Gorou', '../../assets/png/gorou.png', 'geo'),
     new CharacterCard('Keqing', '../../assets/png/keqing.png', 'electro', true),
     new CharacterCard('Kokomi', '../../assets/png/kokomi.png', 'hydro', true),
-    new CharacterCard('Kuki Shinobu', '../../assets/png/kuki.png', 'electro'),
+    new CharacterCard('K.Shinobu', '../../assets/png/kuki.png', 'electro'),
     new CharacterCard('Kazuha', '../../assets/png/kazuha.png', 'anemo', true),
     new CharacterCard('Qiqi', '../../assets/png/qiqi.png', 'cryo', true),
     new CharacterCard('Mona', '../../assets/png/mona.png', 'hydro', true),
@@ -56,7 +56,7 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Yelan', '../../assets/png/yelan.png', 'hydro', true),
     new CharacterCard('Yunjin', '../../assets/png/yunjin.png', 'geo'),
     new CharacterCard('Razor', '../../assets/png/razor.png', 'electro'),
-    new CharacterCard('Kujou Sara', '../../assets/png/sara.png', 'electro'),
+    new CharacterCard('K.Sara', '../../assets/png/sara.png', 'electro'),
     new CharacterCard('Sayu', '../../assets/png/sayu.png', 'anemo'),
     new CharacterCard('Sucrose', '../../assets/png/sucrose.png', 'anemo'),
     new CharacterCard('Ninguangg', '../../assets/png/ninguangg.png', 'geo'),
@@ -69,6 +69,7 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Nilou', '../../assets/png/collei.png', 'hydro', true),
     new CharacterCard('Candace', '../../assets/png/collei.png', 'hydro'),
     new CharacterCard('Dori', '../../assets/png/collei.png', 'electro'),
+    new CharacterCard('Xiao', '../../assets/png/xiao.png', 'anemo', true),
   ];
   cardList : CharacterCard[] = [];
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
