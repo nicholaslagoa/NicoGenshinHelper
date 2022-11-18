@@ -81,8 +81,8 @@ export class TeamMakerComponent implements OnInit {
 
   //#region FILTER
   filters = [
-    new CharacterFilter('four', '../../assets/png/anemo.png'),
-    new CharacterFilter('five', '../../assets/png/anemo.png'),
+    new CharacterFilter('four', '../../assets/png/four.png'),
+    new CharacterFilter('five', '../../assets/png/five.png'),
     new CharacterFilter('anemo', '../../assets/png/anemo.png'),
     new CharacterFilter('pyro', '../../assets/png/pyro.png'),
     new CharacterFilter('electro', '../../assets/png/electro.png'),
