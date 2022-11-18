@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TeamMakerService } from '../services/team-maker.service';
 import { CharacterCard } from './character-card';
+import { CharacterFilter } from './character-filter';
 
 @Component({
   selector: 'app-team-maker',
@@ -9,6 +10,7 @@ import { CharacterCard } from './character-card';
 })
 export class TeamMakerComponent implements OnInit {
 
+  //#region CHARACTER-LIST
   cardListBase = [
     new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true, true),//png size = 208x248
     new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', false, true),
@@ -21,11 +23,27 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Childe', '../../assets/png/childe.png', 'hydro', true),
     new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
     new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo', true),
-    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro')
+    new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
+    new CharacterCard('Yoimiya', '../../assets/png/yoimiya.png', 'pyro')
   ];
   cardList : CharacterCard[] = [];
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
+  //#endregion
 
+  filters = [
+    new CharacterFilter('four', '../../assets/png/anemo.png'),
+    new CharacterFilter('five', '../../assets/png/anemo.png'),
+    new CharacterFilter('anemo', '../../assets/png/anemo.png'),
+    new CharacterFilter('pyro', '../../assets/png/pyro.png'),
+    new CharacterFilter('electro', '../../assets/png/electro.png'),
+    new CharacterFilter('hydro', '../../assets/png/hydro.png'),
+    new CharacterFilter('geo', '../../assets/png/geo.png'),
+    new CharacterFilter('cryo', '../../assets/png/cryo.png'),
+    new CharacterFilter('dendro', '../../assets/png/dendro.png'),
+    new CharacterFilter('clear', '../../assets/png/clear.png')
+  ];
+  filterList : CharacterFilter[] = [];
+  selectedFilters: string[] = [];
 
   constructor(private service : TeamMakerService) { }
 
@@ -33,7 +51,8 @@ export class TeamMakerComponent implements OnInit {
     this.cardList = this.cardListBase;
   }
 
-  addToSelectedList(card : CharacterCard){
+  //#region CHARACTER-LIST
+  addToSelectedCharacterList(card : CharacterCard){
     if (card.name != 'Traveler' &&
       card.name != 'Kaeya' &&
       card.name != 'Lisa' &&
@@ -54,28 +73,64 @@ export class TeamMakerComponent implements OnInit {
       console.log(this.selectedCharacters);
     }
   }
+  //#endregion
 
-  getTeams(){
-    this.service.getTeams(this.selectedCharacters).subscribe(res => {
-      console.log(res);
-    })
-  }
-
-  filter(filter : string){
-    if (filter != 'clear' && filter != 'four' && filter != 'five'){ //element filter
+  filter(filter : CharacterFilter){
+    if (filter.property != 'clear' && filter.property != 'four' && filter.property != 'five'){ //element filter
       this.cardList = this.cardListBase;
-      this.cardList = this.cardList.filter(x => x.element == filter);
+      this.addToSelectedFilterList(filter);
+      this.cardList = this.cardList.filter(x => x.element == filter.property);
     }
-    else if (filter == 'four'){
+    else if (filter.property == 'four'){//four-star filter
       this.cardList = this.cardListBase;
+      this.addToSelectedFilterList(filter);
       this.cardList = this.cardList.filter(x => !x.isFiveStar);
     }
-    else if (filter == 'five'){
+    else if (filter.property == 'five'){//five-star filter
       this.cardList = this.cardListBase;
+      this.addToSelectedFilterList(filter);
       this.cardList = this.cardList.filter(x => x.isFiveStar);
     }
     else{//clear filter
       this.cardList = this.cardListBase;
     }
+  }
+
+  addToSelectedFilterList(filter : CharacterFilter){
+    if (filter.property != 'clear')
+    {
+      if (filter.property == 'five')
+      {
+        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+          if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
+        });
+      }
+      else if (filter.property == 'four')
+      {
+        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+          if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
+        });
+      }
+
+      filter.selected = !filter.selected;
+
+      if (filter.selected){
+        this.selectedFilters.push(filter.property);
+      }
+
+      else{
+        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+          if (selectedFilterProperty == filter.property) this.selectedFilters.splice(index,1);
+        });
+      }
+
+      console.log(this.selectedFilters);
+    }
+  }
+
+  getTeams(){
+    this.service.getTeams(this.selectedCharacters).subscribe(res => {
+      console.log(res);
+    })
   }
 }
