@@ -6,10 +6,10 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-12" *ngFor="let card of cardList" style="width:9rem">
-                                <div class="card mb-2" (click)="addToSelectedCharacterList(card)" [ngClass]="card.selected ? 'card-selected' : ''">
+                                <div class="card character-card mb-3" (click)="addToSelectedCharacterList(card)" [ngClass]="card.selected ? 'card-selected' : ''">
                                     <img [src]="card.photo" class="card-img-top" alt="...">
-                                    <div class="card-body">
-                                        <h5 class="card-title" [ngClass]="card.selected ? 'card-selected' : ''">{{ card.name }}</h5>
+                                    <div class="card-body" style="display: table;">
+                                        <h5 class="card-title text-center" [ngClass]="card.selected ? 'card-selected' : ''">{{ card.name }}</h5>
                                     </div>
                                 </div>
                             </div>

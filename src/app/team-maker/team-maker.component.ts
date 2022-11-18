@@ -24,7 +24,18 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
     new CharacterCard('Zhongli', '../../assets/png/zhongli.png', 'geo', true),
     new CharacterCard('Xingqiu', '../../assets/png/xingqiu.png', 'hydro'),
-    new CharacterCard('Yoimiya', '../../assets/png/yoimiya.png', 'pyro')
+    new CharacterCard('Yoimiya', '../../assets/png/yoimiya.png', 'pyro', true),
+    new CharacterCard('Diluc', '../../assets/png/diluc.png', 'pyro', true),
+    new CharacterCard('Klee', '../../assets/png/klee.png', 'pyro', true),
+    new CharacterCard('Hu Tao', '../../assets/png/hutao.png', 'pyro', true),
+    new CharacterCard('Ganyu', '../../assets/png/ganyu.png', 'cryo', true),
+    new CharacterCard('Yanfei', '../../assets/png/yanfei.png', 'pyro'),
+    new CharacterCard('Diona', '../../assets/png/diona.png', 'cryo'),
+    new CharacterCard('Chongyun', '../../assets/png/chongyun.png', 'cryo'),
+    new CharacterCard('Collei', '../../assets/png/collei.png', 'dendro'),
+    new CharacterCard('Nahida', '../../assets/png/collei.png', 'dendro', true),
+    new CharacterCard('Cyno', '../../assets/png/cyno.png', 'electro', true),
+    new CharacterCard('Yae Miko', '../../assets/png/yaemiko.png', 'electro', true)
   ];
   cardList : CharacterCard[] = [];
   selectedCharacters: string[] = ['Traveler', 'Amber', 'Kaeya', 'Lisa'];
@@ -75,6 +86,7 @@ export class TeamMakerComponent implements OnInit {
   }
   //#endregion
 
+  //#region FILTER-LIST
   filter(filter : CharacterFilter){
     if (filter.property != 'clear' && filter.property != 'four' && filter.property != 'five'){ //element filter
       this.cardList = this.cardListBase;
@@ -93,6 +105,7 @@ export class TeamMakerComponent implements OnInit {
     }
     else{//clear filter
       this.cardList = this.cardListBase;
+      this.addToSelectedFilterList(filter);
     }
   }
 
@@ -102,13 +115,13 @@ export class TeamMakerComponent implements OnInit {
       if (filter.property == 'five')
       {
         this.selectedFilters.forEach((selectedFilterProperty, index) =>{
-          if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
+          if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
         });
       }
       else if (filter.property == 'four')
       {
         this.selectedFilters.forEach((selectedFilterProperty, index) =>{
-          if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
+          if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
         });
       }
 
@@ -126,7 +139,11 @@ export class TeamMakerComponent implements OnInit {
 
       console.log(this.selectedFilters);
     }
+    else{
+      this.selectedFilters = [];
+    }
   }
+  //#endregion
 
   getTeams(){
     this.service.getTeams(this.selectedCharacters).subscribe(res => {
