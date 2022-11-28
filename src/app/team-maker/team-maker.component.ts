@@ -1,5 +1,6 @@
 import { MediaMatcher } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { LoaderService } from '../services/loader/loader.service';
 import { TeamMakerService } from '../services/team-maker.service';
 import { CharacterCard } from './character-card';
 import { CharacterFilter } from './character-filter';
@@ -97,12 +98,14 @@ export class TeamMakerComponent implements OnInit {
   //#endregion
 
   constructor(private service : TeamMakerService,
-    media : MediaMatcher) {
+    media : MediaMatcher,
+    private loader : LoaderService) {
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
   }
 
   ngOnInit(): void {
     this.cardList = this.cardListBase;
+    this.loader.hide();
   }
 
   //#region CHARACTER-LIST
@@ -131,6 +134,8 @@ export class TeamMakerComponent implements OnInit {
 
   //#region FILTER-LIST
   addToSelectedFilterList(filter : CharacterFilter){
+    this.loader.show();
+
     if (filter.property == 'clear')
     {
       this.selectedFilters.splice(0, this.selectedFilters.length);
@@ -173,9 +178,15 @@ export class TeamMakerComponent implements OnInit {
     }
 
     this.filterCharacterList();
+
+    setTimeout(() => { this.loader.hide(); }, 100)
   }
   
   filterCharacterList(){
+    // setTimeout(() => {
+      // this.loader.show();
+    // }, 0)
+
     let selectedFilters = this.filters.filter(x => x.selected);
     this.cardList = this.cardListBase;
 

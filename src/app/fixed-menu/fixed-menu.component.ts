@@ -19,8 +19,7 @@ export class FixedMenuComponent implements OnInit {
   ]
 
   constructor(media: MediaMatcher,
-    svgCreator: SvgCreatorService,
-    public loaderService: LoaderService) {
+    svgCreator: SvgCreatorService) {
 
     this.mobileQuery = media.matchMedia('(max-width: 600px)');
 

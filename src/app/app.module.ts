@@ -12,6 +12,7 @@ import { PrimogemCalculatorComponent } from './primogem-calculator/primogem-calc
 import { TeamMakerComponent } from './team-maker/team-maker.component';
 import { TodayListComponent } from './today-list/today-list.component';
 import { FixedMenuComponent } from './fixed-menu/fixed-menu.component';
+import { LoaderComponent } from './services/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FixedMenuComponent } from './fixed-menu/fixed-menu.component';
     PrimogemCalculatorComponent,
     TeamMakerComponent,
     TodayListComponent,
-    FixedMenuComponent
+    FixedMenuComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
