@@ -46,7 +46,6 @@ export class TeamMakerComponent implements OnInit {
     new CharacterCard('Eula', '../../assets/png/eula.png', 'cryo', true),
     new CharacterCard('Ayaka', '../../assets/png/ayaka.png', 'cryo', true),
     new CharacterCard('Rosaria', '../../assets/png/rosaria.png', 'cryo'),
-    new CharacterCard('Yae Miko', '../../assets/png/yaemiko.png', 'electro', true),
     new CharacterCard('Fischl', '../../assets/png/fischl.png', 'electro'),
     new CharacterCard('Gorou', '../../assets/png/gorou.png', 'geo'),
     new CharacterCard('Keqing', '../../assets/png/keqing.png', 'electro', true),
@@ -134,8 +133,7 @@ export class TeamMakerComponent implements OnInit {
 
   //#region FILTER-LIST
   addToSelectedFilterList(filter : CharacterFilter){
-    this.loader.show();
-
+    // this.loader.show();
     if (filter.property == 'clear')
     {
       this.selectedFilters.splice(0, this.selectedFilters.length);
@@ -146,25 +144,40 @@ export class TeamMakerComponent implements OnInit {
 
     if (filter.property == 'five')
     {
-      this.selectedFilters.forEach((selectedFilterProperty, index) =>{//remove  'four' from characterFilter
+      this.selectedFilters.forEach((selectedFilterProperty, index) =>{//remove 'four' from characterFilter
         if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
       });
 
-      this.filters.forEach((filterItem, index) =>{//remove from selectedFilters at the "Filters:" tab
+      this.filters.forEach((filterItem, index) =>{//remove 'four' from selectedFilters at 'Filters:' tab
         if (filterItem.property == 'four' && filterItem.selected) this.filters[index].selected = !this.filters[index].selected;
       });
     }
   
     else if (filter.property == 'four')
     {
-      this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+      this.selectedFilters.forEach((selectedFilterProperty, index) =>{//remove 'five' from characterFilter
         if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
       });
     
-      this.filters.forEach((filterItem, index) =>{
+      this.filters.forEach((filterItem, index) =>{//remove 'five' from selectedFilters at 'Filters:' tab
         if (filterItem.property == 'five' && filterItem.selected) this.filters[index].selected = !this.filters[index].selected;
       });
     }
+
+    this.selectedFilters.forEach((selectedFilterProperty, index) => {
+      if ((selectedFilterProperty != 'four' && selectedFilterProperty != 'five' && selectedFilterProperty != 'clear')
+        && selectedFilterProperty != filter.property)
+      {
+        this.selectedFilters.splice(index, 1);//remove the rest of the selected elemental filters
+      }
+
+      this.filters.forEach((filterItem, index) =>{
+        if ((filterItem.property != 'five' && filterItem.property != 'four' && filterItem.property != 'clear')
+          && filterItem.selected){
+            this.filters[index].selected = !this.filters[index].selected;//remove the rest of the selected elemental filters at 'Filters:' tab
+        } 
+      });
+    });
 
     filter.selected = !filter.selected;
 
@@ -179,7 +192,7 @@ export class TeamMakerComponent implements OnInit {
 
     this.filterCharacterList();
 
-    setTimeout(() => { this.loader.hide(); }, 100)
+    // setTimeout(() => { this.loader.hide(); }, 100)
   }
   
   filterCharacterList(){
@@ -204,43 +217,12 @@ export class TeamMakerComponent implements OnInit {
       if (filterItem.property == 'five' && filterItem.selected){
         this.cardList = this.cardList.filter(x => x.isFiveStar);
       }
+
+      if ((filterItem.property != 'four' && filterItem.property != 'five' && filterItem.property != 'clear')
+        && filterItem.selected){
+        this.cardList = this.cardList.filter(x => x.element == filterItem.property);
+      }
     });
-    // if (filter.property != 'clear' && filter.property != 'four' && filter.property != 'five'){ //element filter
-    //   this.cardList = this.cardListBase;
-    //   filter.selected = !filter.selected;
-    //   this.addToSelectedFilterList(filter);
-
-    //   if (filter.selected)
-    //     this.cardList = this.cardList.filter(x => x.element == filter.property);
-    // }
-
-    // if (filter.property == 'four'){//four-star filter
-    //   this.cardList = this.cardListBase;
-    //   filter.selected = !filter.selected;
-
-    //   if (filter.selected){
-    //     this.addToSelectedFilterList(filter);
-    //     this.cardList = this.cardList.filter(x => !x.isFiveStar);
-    //   }
-    // }
-
-    // if (filter.property == 'five'){//five-star filter
-    //   this.cardList = this.cardListBase;
-    //   filter.selected = !filter.selected;
-
-    //   if (filter.selected){
-    //     this.addToSelectedFilterList(filter);
-    //     this.cardList = this.cardList.filter(x => x.isFiveStar);
-    //   }
-    // }
-
-    // if (filter.property == 'clear'){//clear filter
-    //   this.cardList = this.cardListBase;
-    //   this.selectedFilters.splice(0, this.selectedFilters.length);
-    //   this.filters.forEach((filterItem, index) => {
-    //     filterItem.selected = false;
-    //   })
-    // }
   }
   //#endregion
 

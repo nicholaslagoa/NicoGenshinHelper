@@ -6,7 +6,7 @@
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
-                            <button class="btn" (click)="addToSelectedFilterList(filterItem)">
+                            <button [ngClass]="filterItem.selected ? 'btn btn-secondary mb-2' : 'btn mb-2'" (click)="addToSelectedFilterList(filterItem)">
                                 <img [src]="filterItem.image">
                             </button>
                         </div>
@@ -26,6 +26,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="cardList.length == 0">
+                                    <h2>No characters were found.</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -36,7 +39,7 @@
             <div class="row">
                 <div class="col-sm-10">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body character-list">
                             <div class="row">
                                 <div *ngFor="let card of cardList" style="width:9rem">
                                     <div class="card character-card mb-3" 
@@ -49,6 +52,9 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div *ngIf="cardList.length == 0">
+                                    <h2>No characters were found.</h2>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -57,7 +63,7 @@
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
-                            <button [ngClass]="filterItem.selected ? 'btn btn-secondary' : 'btn'" (click)="addToSelectedFilterList(filterItem)">
+                            <button [ngClass]="filterItem.selected ? 'btn btn-secondary mb-2' : 'btn mb-2'" (click)="addToSelectedFilterList(filterItem)">
                                 <img [src]="filterItem.image">
                             </button>
                         </div>
