@@ -183,10 +183,6 @@ export class TeamMakerComponent implements OnInit {
   }
   
   filterCharacterList(){
-    // setTimeout(() => {
-      // this.loader.show();
-    // }, 0)
-
     let selectedFilters = this.filters.filter(x => x.selected);
     this.cardList = this.cardListBase;
 

@@ -21,3 +21,9 @@
 .filter-selected{
     background-color: rgb(255, 220, 164);
 }
+
+.fixed{
+    position: -webkit-sticky; /* Safari & IE */
+    position: sticky;
+    top: 0;
+}
