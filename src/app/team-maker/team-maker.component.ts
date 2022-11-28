@@ -129,6 +129,20 @@ export class TeamMakerComponent implements OnInit {
       console.log(this.selectedCharacters);
     }
   }
+
+  clearSelectedCharacters(){
+    this.selectedCharacters.length = 0;
+    
+    this.cardList.forEach((card, index) => {
+      if (card.selected)
+      {
+        if (card.name != 'Kaeya' && card.name != 'Amber' && card.name != 'Lisa' && card.name != 'Traveler')
+        {
+          card.selected = false;
+        }
+      }
+    });
+  }
   //#endregion
 
   //#region FILTER-LIST
