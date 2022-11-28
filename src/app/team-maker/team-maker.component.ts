@@ -178,20 +178,23 @@ export class TeamMakerComponent implements OnInit {
       });
     }
 
-    this.selectedFilters.forEach((selectedFilterProperty, index) => {
-      if ((selectedFilterProperty != 'four' && selectedFilterProperty != 'five' && selectedFilterProperty != 'clear')
-        && selectedFilterProperty != filter.property)
-      {
-        this.selectedFilters.splice(index, 1);//remove the rest of the selected elemental filters
-      }
-
-      this.filters.forEach((filterItem, index) =>{
-        if ((filterItem.property != 'five' && filterItem.property != 'four' && filterItem.property != 'clear')
-          && filterItem.selected){
-            this.filters[index].selected = !this.filters[index].selected;//remove the rest of the selected elemental filters at 'Filters:' tab
-        } 
+    if (filter.property != 'four' && filter.property != 'five' && filter.property != 'clear')
+    {
+      this.selectedFilters.forEach((selectedFilterProperty, index) => {
+        if ((selectedFilterProperty != 'four' && selectedFilterProperty != 'five' && selectedFilterProperty != 'clear')
+          && selectedFilterProperty != filter.property)
+        {
+          this.selectedFilters.splice(index, 1);//remove the rest of the selected elemental filters
+        }
+  
+        this.filters.forEach((filterItem, index) =>{
+          if ((filterItem.property != 'five' && filterItem.property != 'four' && filterItem.property != 'clear')
+            && filterItem.selected){
+              this.filters[index].selected = !this.filters[index].selected;//remove the rest of the selected elemental filters at 'Filters:' tab
+          } 
+        });
       });
-    });
+    }
 
     filter.selected = !filter.selected;
 
