@@ -130,61 +130,110 @@ export class TeamMakerComponent implements OnInit {
   //#endregion
 
   //#region FILTER-LIST
-  filter(filter : CharacterFilter){
-    if (filter.property != 'clear' && filter.property != 'four' && filter.property != 'five'){ //element filter
-      this.cardList = this.cardListBase;
-      this.addToSelectedFilterList(filter);
-      this.cardList = this.cardList.filter(x => x.element == filter.property);
-    }
-    else if (filter.property == 'four'){//four-star filter
-      this.cardList = this.cardListBase;
-      this.addToSelectedFilterList(filter);
-      this.cardList = this.cardList.filter(x => !x.isFiveStar);
-    }
-    else if (filter.property == 'five'){//five-star filter
-      this.cardList = this.cardListBase;
-      this.addToSelectedFilterList(filter);
-      this.cardList = this.cardList.filter(x => x.isFiveStar);
-    }
-    else{//clear filter
-      this.cardList = this.cardListBase;
-      this.addToSelectedFilterList(filter);
-    }
-  }
-
   addToSelectedFilterList(filter : CharacterFilter){
-    if (filter.property != 'clear')
+    if (filter.property == 'clear')
     {
-      if (filter.property == 'five')
-      {
-        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
-          if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
-        });
-      }
-      else if (filter.property == 'four')
-      {
-        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
-          if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
-        });
-      }
+      this.selectedFilters.splice(0, this.selectedFilters.length);
+      this.filters.forEach((filterItem, index) => {
+        filterItem.selected = false;
+      })
+    }
 
-      filter.selected = !filter.selected;
+    if (filter.property == 'five')
+    {
+      this.selectedFilters.forEach((selectedFilterProperty, index) =>{//remove  'four' from characterFilter
+        if (selectedFilterProperty == 'four') this.selectedFilters.splice(index,1);
+      });
 
-      if (filter.selected){
-        this.selectedFilters.push(filter.property);
-      }
+      this.filters.forEach((filterItem, index) =>{//remove from selectedFilters at the "Filters:" tab
+        if (filterItem.property == 'four' && filterItem.selected) this.filters[index].selected = !this.filters[index].selected;
+      });
+    }
+  
+    else if (filter.property == 'four')
+    {
+      this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+        if (selectedFilterProperty == 'five') this.selectedFilters.splice(index,1);
+      });
+    
+      this.filters.forEach((filterItem, index) =>{
+        if (filterItem.property == 'five' && filterItem.selected) this.filters[index].selected = !this.filters[index].selected;
+      });
+    }
 
-      else{
-        this.selectedFilters.forEach((selectedFilterProperty, index) =>{
-          if (selectedFilterProperty == filter.property) this.selectedFilters.splice(index,1);
-        });
-      }
+    filter.selected = !filter.selected;
 
-      console.log(this.selectedFilters);
+    if (filter.selected){
+      this.selectedFilters.push(filter.property);
     }
     else{
-      this.selectedFilters = [];
+      this.selectedFilters.forEach((selectedFilterProperty, index) =>{
+        if (selectedFilterProperty == filter.property) this.selectedFilters.splice(index,1);
+      });
     }
+
+    this.filterCharacterList();
+  }
+  
+  filterCharacterList(){
+    let selectedFilters = this.filters.filter(x => x.selected);
+    this.cardList = this.cardListBase;
+
+    selectedFilters.forEach((filterItem, index) => 
+    {
+      if (filterItem.property == 'clear'){
+        this.cardList = this.cardListBase;
+        this.selectedFilters.splice(0, this.selectedFilters.length);
+
+        this.filters.forEach((filterItem, index) => {
+          filterItem.selected = false;
+        });
+      }
+
+      if (filterItem.property == 'four' && filterItem.selected){
+        this.cardList = this.cardList.filter(x => !x.isFiveStar);
+      }
+
+      if (filterItem.property == 'five' && filterItem.selected){
+        this.cardList = this.cardList.filter(x => x.isFiveStar);
+      }
+    });
+    // if (filter.property != 'clear' && filter.property != 'four' && filter.property != 'five'){ //element filter
+    //   this.cardList = this.cardListBase;
+    //   filter.selected = !filter.selected;
+    //   this.addToSelectedFilterList(filter);
+
+    //   if (filter.selected)
+    //     this.cardList = this.cardList.filter(x => x.element == filter.property);
+    // }
+
+    // if (filter.property == 'four'){//four-star filter
+    //   this.cardList = this.cardListBase;
+    //   filter.selected = !filter.selected;
+
+    //   if (filter.selected){
+    //     this.addToSelectedFilterList(filter);
+    //     this.cardList = this.cardList.filter(x => !x.isFiveStar);
+    //   }
+    // }
+
+    // if (filter.property == 'five'){//five-star filter
+    //   this.cardList = this.cardListBase;
+    //   filter.selected = !filter.selected;
+
+    //   if (filter.selected){
+    //     this.addToSelectedFilterList(filter);
+    //     this.cardList = this.cardList.filter(x => x.isFiveStar);
+    //   }
+    // }
+
+    // if (filter.property == 'clear'){//clear filter
+    //   this.cardList = this.cardListBase;
+    //   this.selectedFilters.splice(0, this.selectedFilters.length);
+    //   this.filters.forEach((filterItem, index) => {
+    //     filterItem.selected = false;
+    //   })
+    // }
   }
   //#endregion
 

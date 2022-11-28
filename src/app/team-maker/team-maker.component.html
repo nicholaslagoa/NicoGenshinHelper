@@ -6,7 +6,7 @@
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
-                            <button class="btn" (click)="filter(filterItem)">
+                            <button class="btn" (click)="addToSelectedFilterList(filterItem)">
                                 <img [src]="filterItem.image">
                             </button>
                         </div>
@@ -57,7 +57,7 @@
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
-                            <button class="btn" (click)="filter(filterItem)">
+                            <button [ngClass]="filterItem.selected ? 'btn btn-secondary' : 'btn'" (click)="addToSelectedFilterList(filterItem)">
                                 <img [src]="filterItem.image">
                             </button>
                         </div>
