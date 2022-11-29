@@ -17,7 +17,7 @@ export class TeamMakerComponent implements OnInit {
 
   //#region CHARACTER-LIST
   cardListBase = [
-    new CharacterCard('Traveler', '../../assets/png/traveler.png', 'anemo', true, true),//png size = 208x248
+    new CharacterCard('Traveler', '../../assets/png/traveler.png', '', true, true),//png size = 208x248
     new CharacterCard('Amber', '../../assets/png/amber.png', 'pyro', false, true),
     new CharacterCard('Kaeya', '../../assets/png/kaeya.png', 'cryo', false, true),
     new CharacterCard('Lisa', '../../assets/png/lisa.png', 'electro', false, true),
@@ -238,6 +238,12 @@ export class TeamMakerComponent implements OnInit {
       if ((filterItem.property != 'four' && filterItem.property != 'five' && filterItem.property != 'clear')
         && filterItem.selected){
         this.cardList = this.cardList.filter(x => x.element == filterItem.property);
+
+        if (filterItem.property != 'cryo' && filterItem.property != 'pyro' && filterItem.property != 'hydro')
+        {
+          let traveler = this.cardListBase[0];
+          this.cardList.push(traveler);
+        }
       }
     });
   }
