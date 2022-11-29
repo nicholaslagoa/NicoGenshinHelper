@@ -189,7 +189,7 @@ export class TeamMakerComponent implements OnInit {
   
         this.filters.forEach((filterItem, index) =>{
           if ((filterItem.property != 'five' && filterItem.property != 'four' && filterItem.property != 'clear')
-            && filterItem.selected){
+            && filterItem.selected && filterItem.property != filter.property){
               this.filters[index].selected = !this.filters[index].selected;//remove the rest of the selected elemental filters at 'Filters:' tab
           } 
         });
