@@ -243,6 +243,11 @@ export class TeamMakerComponent implements OnInit {
         {
           let traveler = this.cardListBase[0];
           this.cardList.push(traveler);
+
+          let first = this.cardList[0];
+          let last = this.cardList[this.cardList.length-1];
+          this.cardList[0] = last;
+          this.cardList[this.cardList.length-1] = first;
         }
       }
     });
