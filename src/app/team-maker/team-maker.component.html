@@ -52,7 +52,26 @@
                 <div class="component-explanation">
                     testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsdstestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsds
                 </div>
-                <div class="col-sm-10">
+                <h2>Filters:</h2>
+                <div class="row">
+                    <div class="btn-group">
+                        <button *ngFor="let filterItem of filters" 
+                        [ngClass]="filterItem.selected ? 'btn btn-secondary mb-2' : 'btn mb-2'" 
+                        (click)="addToSelectedFilterList(filterItem)">
+                            <img [src]="filterItem.image">
+                        </button>
+                    </div>
+                </div> 
+                <hr>
+                <div class="row">
+                    <div class="col">
+                        <button type="button" class="btn btn-danger mb-3 clear-button" (click)="clearSelectedCharacters()">Clear List</button>
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary mb-3" (click)="getTeams()">Get Teams</button>
+                    </div>
+                </div>
+                <div class="col-sm">
                     <div class="card">
                         <div class="card-body character-list">
                             <div class="row">
@@ -71,25 +90,6 @@
                                     <h2>No characters were found.</h2>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg fixed over-hidden">
-                    <h2>Filters:</h2>
-                    <div class="row">
-                        <div class="col" *ngFor="let filterItem of filters">
-                            <button [ngClass]="filterItem.selected ? 'btn btn-secondary mb-2' : 'btn mb-2'" (click)="addToSelectedFilterList(filterItem)">
-                                <img [src]="filterItem.image">
-                            </button>
-                        </div>
-                    </div> 
-                    <hr>
-                    <div class="row">
-                        <div class="col">
-                            <button type="button" class="btn btn-danger mb-3 clear-button" (click)="clearSelectedCharacters()">Clear List</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-primary mb-3" (click)="getTeams()">Get Teams</button>
                         </div>
                     </div>
                 </div>
