@@ -2,7 +2,7 @@
     <div class="p-3">
         <ng-container *ngIf="mobileQuery.matches">
             <div class="row">
-                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg">
+                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg over-hidden">
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
@@ -12,14 +12,23 @@
                         </div>
                     </div> 
                     <hr>
-                    <button type="button" class="btn btn-primary mb-3" (click)="getTeams()">Get Teams</button>
+                    <div class="row">
+                        <div class="col-6">
+                            <button type="button" class="btn btn-lg btn-primary mb-3" (click)="getTeams()">Get Teams</button>
+                        </div>
+                        <div class="col-6">
+                            <button type="button" class="btn btn-lg btn-danger mb-3" (click)="clearSelectedCharacters()">Clear List</button>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-10">
                     <div class="card">
                         <div class="card-body">
                             <div class="row">
                                 <div *ngFor="let card of cardList" style="width:9rem">
-                                    <div class="card character-card mb-3" (click)="addToSelectedCharacterList(card)" [ngClass]="card.selected ? 'card-selected' : ''">
+                                    <div class="card character-card mb-3" 
+                                    (click)="addToSelectedCharacterList(card)" 
+                                    [ngClass]="card.selected ? 'card-selected' : ''">
                                         <img [src]="card.photo" class="card-img-top" alt="...">
                                         <div class="card-body" style="display: table;">
                                             <h5 class="card-title text-center" [ngClass]="card.selected ? 'card-selected' : ''">{{ card.name }}</h5>
@@ -59,7 +68,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg fixed">
+                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg fixed over-hidden">
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
@@ -69,8 +78,14 @@
                         </div>
                     </div> 
                     <hr>
-                    <button type="button" class="btn btn-secondary mb-3" (click)="clearSelectedCharacters()">Clear Selected</button>
-                    <button type="button" class="btn btn-primary mb-3" (click)="getTeams()">Get Teams</button>
+                    <div class="row">
+                        <div class="col">
+                            <button type="button" class="btn btn-danger mb-3 clear-button" (click)="clearSelectedCharacters()">Clear List</button>
+                        </div>
+                        <div class="col">
+                            <button type="button" class="btn btn-primary mb-3" (click)="getTeams()">Get Teams</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </ng-container>

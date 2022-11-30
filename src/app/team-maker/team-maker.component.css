@@ -32,3 +32,12 @@
     position: sticky;
     top: 0;
 }
+
+.clear-button{
+    display:block;
+    height: 80%;
+}
+
+.over-hidden{
+    overflow: hidden;
+}
