@@ -34,10 +34,13 @@
 }
 
 .clear-button{
-    display:block;
     height: 80%;
 }
 
 .over-hidden{
     overflow: hidden;
+}
+
+.component-explanation {
+    word-break: break-word;
 }
