@@ -81,6 +81,7 @@ export class TeamMakerComponent implements OnInit {
 
   //#region FILTER
   filters = [
+    new CharacterFilter('clear', '../../assets/png/clear.png'),
     new CharacterFilter('four', '../../assets/png/four.png'),
     new CharacterFilter('five', '../../assets/png/five.png'),
     new CharacterFilter('anemo', '../../assets/png/anemo.png'),
@@ -89,8 +90,7 @@ export class TeamMakerComponent implements OnInit {
     new CharacterFilter('hydro', '../../assets/png/hydro.png'),
     new CharacterFilter('geo', '../../assets/png/geo.png'),
     new CharacterFilter('cryo', '../../assets/png/cryo.png'),
-    new CharacterFilter('dendro', '../../assets/png/dendro.png'),
-    new CharacterFilter('clear', '../../assets/png/clear.png')
+    new CharacterFilter('dendro', '../../assets/png/dendro.png')
   ];
   filterList : CharacterFilter[] = [];
   selectedFilters: string[] = [];
