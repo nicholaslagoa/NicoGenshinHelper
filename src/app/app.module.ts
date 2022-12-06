@@ -13,6 +13,7 @@ import { TeamMakerComponent } from './team-maker/team-maker.component';
 import { TodayListComponent } from './today-list/today-list.component';
 import { FixedMenuComponent } from './fixed-menu/fixed-menu.component';
 import { LoaderComponent } from './services/loader/loader.component';
+import { AdBannerComponent } from './ad-banner/ad-banner.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoaderComponent } from './services/loader/loader.component';
     TeamMakerComponent,
     TodayListComponent,
     FixedMenuComponent,
-    LoaderComponent
+    LoaderComponent,
+    AdBannerComponent
   ],
   imports: [
     BrowserModule,

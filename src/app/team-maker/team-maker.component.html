@@ -2,10 +2,13 @@
     <div class="p-3">
         <ng-container *ngIf="mobileQuery.matches">
             <div class="row">
-                <div class="component-explanation">
-                    testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsdstestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsds
+                <div class="component-explanation text-center">
+                    <h2>Team Maker</h2>
+                    <p>Select the characters your account possesses and click on <b>Get Teams</b>:</p>
                 </div>
-                <div class="col-sm-2 border border-5 rounded-start text-center max-content shadow-lg over-hidden">
+                <app-ad-banner></app-ad-banner>
+                <p></p>
+                <div class="col-sm-2 card text-center max-content shadow-lg over-hidden">
                     <h2>Filters:</h2>
                     <div class="row">
                         <div class="col" *ngFor="let filterItem of filters">
@@ -13,7 +16,7 @@
                                 <img [src]="filterItem.image">
                             </button>
                         </div>
-                    </div> 
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="col-6">
@@ -49,9 +52,11 @@
         </ng-container>
         <ng-container *ngIf="!mobileQuery.matches">
             <div class="row">
-                <div class="component-explanation">
-                    testetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsdstestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestetestesdsdsdsdsdssdsdsdsdsddsdsdsdsdsdsdsdsdsdsddsdsdsdsds
+                <div class="component-explanation text-center">
+                    <h2>Team Maker</h2>
+                    <p>Select the characters your account possesses and click on <b>Get Teams</b>:</p>
                 </div>
+                <app-ad-banner></app-ad-banner>
                 <h2>Filters:</h2>
                 <div class="row">
                     <div class="btn-group">
