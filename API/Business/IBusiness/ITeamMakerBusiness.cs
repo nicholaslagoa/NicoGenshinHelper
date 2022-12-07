@@ -1,9 +1,9 @@
-using API.Models.TeamMaker;
+using API.Dtos;
 
 namespace API.Business.IBusiness
 {
   public interface ITeamMakerBusiness
   {
-    public TeamMakerViewModel GetTeams(TeamMakerInputModel input); 
+    public TeamReadDto GetTeams(string[] characters); 
   }
 }

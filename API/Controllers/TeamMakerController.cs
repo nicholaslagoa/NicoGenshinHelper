@@ -1,5 +1,5 @@
 using API.Business.IBusiness;
-using API.Models.TeamMaker;
+using API.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -14,9 +14,9 @@ namespace API.Controllers
     }
 
     [HttpGet, Route("get-teams")]
-    public ActionResult GetTeams([FromQuery] TeamMakerInputModel input)
+    public ActionResult GetTeams([FromBody]string[] characters)
     {
-      var result = _business.GetTeams(input);
+      var result = _business.GetTeams(characters);
 
       return Ok(result);
     }

@@ -1,21 +1,29 @@
 using API.Business;
 using API.Business.IBusiness;
-using Microsoft.AspNetCore.Builder;
+using API.Data;
+using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+//user-secrets and context config
+var sqlConBuilder = new SqlConnectionStringBuilder();
+sqlConBuilder.ConnectionString = builder.Configuration.GetConnectionString("SQLDbConnection");
+sqlConBuilder.UserID = builder.Configuration["UserId"];
+sqlConBuilder.Password = builder.Configuration["Password"];
 
-builder.Services.AddControllers();
+builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(sqlConBuilder.ConnectionString));
+builder.Services.AddScoped<ITeamMakerBusiness, TeamMakerBusiness>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
   options.AddPolicy("EnableCORS", builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 });
-
-builder.Services.AddScoped<ITeamMakerBusiness, TeamMakerBusiness>();
 
 var app = builder.Build();
 
